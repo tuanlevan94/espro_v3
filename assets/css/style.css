@@ -678,8 +678,8 @@ section {
 
 .services .icon-box .icon {
   margin: 0 auto;
-  width: 64px;
-  height: 64px;
+  width: 50px;
+  height: 50px;
   background: #ffc451;
   border-radius: 4px;
   display: flex;
@@ -699,16 +699,22 @@ section {
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 24px;
+  background-color: #444444;
+  opacity: 0.9;
+  border-radius: 20px;
 }
 
 .services .icon-box h4 a {
   /* color: #151515; */
-  font-size: 30px;
+  font-size: 28px;
   color: #fff;
   text-shadow: 1px 1px #474544, 1px 1px #474544, 1px 1px #474544;
   transition: ease-in-out 0.3s;
 }
-
+.services .icon-box h4:hover {
+  color: transparent;
+  opacity: 1;
+}
 .services .icon-box h4 a:hover {
   color: #ffc451;
 }
@@ -740,6 +746,12 @@ section {
   color: #fff;
   font-size: 28px;
   font-weight: 700;
+}
+.cta h4 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
 }
 
 .cta p {
