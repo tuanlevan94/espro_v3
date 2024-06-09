@@ -392,6 +392,7 @@
               <li data-filter=".filter-app">PLATING LINE</li>
               <li data-filter=".filter-card">CLEANING LINE</li>
               <li data-filter=".filter-web">PLATING PERIPHERAL EQUIPMENT</li>
+              <li data-filter=".filter-video" id="vibarrel-filter">VIBARREL BULK TREATMENT SYSTEM</li>
             </ul>
           </div>
         </div>
@@ -626,6 +627,35 @@
     
           </div>
         </section><!-- End Cta Section -->
+
+        <!--==================Introductory video=================== -->
+        <section id="video-section" class="video-section">
+          <div class="container" data-aos="zoom-in">
+            <div class="text-center">
+              <div class="section-title">
+                <p>VIBARREL BULK TREATMENT SYSTEM®</p>
+              </div>
+              <div class="video-container">
+                <div class="video-wrapper">
+                  <iframe width="100%" height="600" src="https://www.youtube.com/embed/ZBiOpDB-XpA" frameborder="0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section><!-- End Introductory video -->
+          <!-- ===Processes to the video page when clicked======= -->
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+          AOS.init();
+          setTimeout(function() {
+            document.getElementById('vibarrel-filter').addEventListener('click', function() {
+              var videoSection = document.getElementById('video-section');
+              var offset = videoSection.getBoundingClientRect().top + window.scrollY + 100; 
+              window.scrollTo({ top: offset, behavior: 'smooth' });
+            });
+          }, 1000);
+        });
+            </script> <!-- End processes to the video page when clicked -->
 
     <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">

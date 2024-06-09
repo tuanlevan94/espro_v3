@@ -396,6 +396,7 @@
               <li data-filter=".filter-app">DÂY CHUYỀN MẠ</li>
               <li data-filter=".filter-card">DÂY CHUYỀN LÀM SẠCH</li>
               <li data-filter=".filter-web">CUNG CẤP THIẾT BỊ NGOẠI VI CHO DÂY CHUYỀN MẠ</li>
+              <li data-filter=".filter-video" id="vibarrel-filter">MẠ RUNG DẠNG THÙNG</li>
             </ul>
           </div>
         </div>
@@ -616,6 +617,33 @@
 
       </div>
     </section><!-- End Portfolio Section -->
+    <!--==================Introductory video=================== -->
+    <section id="video-section" class="video-section">
+      <div class="container" data-aos="zoom-in">
+        <div class="text-center">
+          <div class="section-title">
+            <p>MẠ RUNG DẠNG THÙNG</p>
+          </div>
+          <div class="video-container">
+            <div class="video-wrapper">
+              <iframe width="100%" height="600" src="https://www.youtube.com/embed/ZBiOpDB-XpA" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Introductory video -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+      AOS.init();
+      setTimeout(function() {
+        document.getElementById('vibarrel-filter').addEventListener('click', function() {
+          var videoSection = document.getElementById('video-section');
+          var offset = videoSection.getBoundingClientRect().top + window.scrollY + 100; 
+          window.scrollTo({ top: offset, behavior: 'smooth' });
+        });
+      }, 1000);
+    });
+        </script> <!-- End processes to the video page when clicked -->
 
         <!-- ======= Cta Section ======= -->
         <section id="cta" class="cta">
