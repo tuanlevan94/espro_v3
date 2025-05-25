@@ -246,41 +246,57 @@
       <div class="container" data-aos="zoom-in">
         <h3>Our Activities</h3>
         <div class="video-wrapper">
-          <video id="esproVideo"
-                autoplay
-                muted
-                controls
-                playsinline
-                preload="auto"
-                controlsList="nodownload"
-                oncontextmenu="return false;">
-            <source src="video/espro_video.MP4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          <div class="responsive-video">
+            <iframe id="esproIframe"
+                    src="https://www.youtube.com/embed/OwNS0z9nbRI?autoplay=1&mute=1&rel=0&enablejsapi=1"
+                    title="ESPRO Video"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
     </section><!-- End Our Activities Section -->
 
     <!-- ======= Script: Auto play/pause on scroll ======= -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const video = document.getElementById("esproVideo");
+      // 1. Tải YouTube Iframe API
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+
+      let player;
+
+      // 2. Khi API sẵn sàng → tạo player và observer
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('esproIframe', {
+          events: {
+            'onReady': onPlayerReady
+          }
+        });
+      }
+
+      function onPlayerReady() {
+        const iframeElement = document.getElementById("esproIframe");
+
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                video.play().catch(err => console.warn("Auto-play was blocked:", err));
+                player.playVideo();
               } else {
-                video.pause();
+                player.pauseVideo();
               }
             });
           },
           { threshold: 0.5 }
         );
-        observer.observe(video);
-      });
-    </script><!-- End Script -->
 
+        observer.observe(iframeElement);
+      }
+    </script><!-- End Script -->
+    
     <!-- ======= Clients Section ======= -->
     <section id="clients" class="clients">
       <div class="container" data-aos="zoom-in">
