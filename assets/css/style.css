@@ -1592,3 +1592,26 @@ section {
   font-size: 13px;
   color: #fff;
 }
+
+/* update */
+
+#our-activities {
+  background: #fff;
+  padding: 60px 0;
+  text-align: center;
+}
+
+#our-activities .video-wrapper {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#our-activities video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
