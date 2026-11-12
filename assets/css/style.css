@@ -1631,3 +1631,27 @@ section {
     height: 100%;
     border: 0;
   }
+
+/* Submenu: wrap long project names instead of running off screen */
+@media (min-width: 992px) {
+  .navbar .dropdown .dropdown ul {
+    width: 340px;
+  }
+
+  .navbar .dropdown .dropdown ul li {
+    min-width: 0;
+  }
+
+  .navbar .dropdown .dropdown ul a {
+    white-space: normal;
+    line-height: 1.45;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1366px) {
+  .navbar .dropdown .dropdown ul,
+  .navbar .dropdown .dropdown:hover>ul {
+    left: auto;
+    right: 100%;
+  }
+}

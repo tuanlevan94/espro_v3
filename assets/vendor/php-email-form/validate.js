@@ -6,15 +6,34 @@
 (function () {
   "use strict";
 
+  /**
+   * ES-PRO: dia chi Google Apps Script nhan form lien he
+   * (luu vao Google Sheet + gui email thong bao).
+   * Doi dia chi o day neu trien khai lai Apps Script.
+   */
+  const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw4N_9ghayawPlkgyrfvnSLJPqEgsDHbaegqkBneERbz5zPSo1cpsFOEMffehldYez1/exec';
+  const isEn = /_en\.html$/i.test(location.pathname);
+  const MSG_FAIL = isEn
+    ? 'Sorry, your message could not be sent. Please try again or contact us by phone/email.'
+    : 'Xin lỗi, chưa gửi được tin nhắn. Vui lòng thử lại hoặc liên hệ qua điện thoại/email.';
+
   let forms = document.querySelectorAll('.php-email-form');
 
   forms.forEach( function(e) {
+    if (!e.querySelector('input[name="website"]')) {
+      let hp = document.createElement('input');
+      hp.type = 'text'; hp.name = 'website'; hp.tabIndex = -1; hp.autocomplete = 'off';
+      hp.setAttribute('aria-hidden', 'true');
+      hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0';
+      e.appendChild(hp);
+    }
     e.addEventListener('submit', function(event) {
       event.preventDefault();
 
       let thisForm = this;
 
       let action = thisForm.getAttribute('action');
+      if (!action || /contact\.php$/i.test(action)) action = FORM_ENDPOINT;
       let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
       
       if( ! action ) {
@@ -26,6 +45,8 @@
       thisForm.querySelector('.sent-message').classList.remove('d-block');
 
       let formData = new FormData( thisForm );
+      formData.set('page', location.pathname.replace(/^\//, '') || 'index.html');
+      formData.set('lang', isEn ? 'EN' : 'VI');
 
       if ( recaptcha ) {
         if(typeof grecaptcha !== "undefined" ) {
@@ -52,8 +73,8 @@
   function php_email_form_submit(thisForm, action, formData) {
     fetch(action, {
       method: 'POST',
-      body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
+      // gui dang urlencoded de Google Apps Script doc duoc (e.parameter)
+      body: new URLSearchParams(formData)
     })
     .then(response => {
       if( response.ok ) {
@@ -72,7 +93,9 @@
       }
     })
     .catch((error) => {
-      displayError(thisForm, error);
+      console.error(error);
+      let m = (error && error.message) || '';
+      displayError(thisForm, (m && m.length < 200 && !/^(Failed|NetworkError|Load failed|\d{3} )/.test(m)) ? m : MSG_FAIL);
     });
   }
 
