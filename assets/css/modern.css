@@ -30,12 +30,23 @@ img {
 }
 
 /* ---------- Header ---------- */
+/* blur lives on a pseudo-element: backdrop-filter on #header itself
+   would trap the fixed mobile menu inside the header bar */
 #header.header-scrolled,
 #header.header-inner-pages {
+  background: transparent;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
+}
+
+#header.header-scrolled::before,
+#header.header-inner-pages::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: rgba(15, 15, 15, 0.86);
   -webkit-backdrop-filter: saturate(160%) blur(10px);
   backdrop-filter: saturate(160%) blur(10px);
-  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
 }
 
 #header .get-started-btn {
@@ -168,7 +179,7 @@ img {
 }
 
 .section-title p {
-  font-family: "Poppins", sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif;
   letter-spacing: 0.5px;
 }
 
@@ -177,7 +188,7 @@ img {
 #our-activities h3 {
   background: none;
   color: var(--ep-dark);
-  font-family: "Poppins", sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif;
   font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
@@ -223,7 +234,7 @@ img {
 }
 
 .about .content h3 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif;
 }
 
 /* ---------- Features ---------- */
@@ -294,7 +305,7 @@ img {
 }
 
 .services .icon-box h4 a {
-  font-family: "Poppins", sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif;
   font-size: 19px;
   font-weight: 600;
   color: #fff;
@@ -381,7 +392,7 @@ img {
 }
 
 .team .member .member-info h4 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
   display: flex;
   align-items: center;
@@ -550,4 +561,84 @@ img {
 .contact .php-email-form select:focus {
   border-color: var(--ep-yellow);
   box-shadow: 0 0 0 4px rgba(255, 196, 81, 0.2);
+}
+
+
+/* ---------- Mobile polish ---------- */
+.section-title h2,
+.section-title p,
+.clients h3,
+#our-activities h3,
+.about h3,
+.counts h3 {
+  text-wrap: balance;
+}
+
+#footer .footer-info .logo img {
+  max-height: 64px;
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .container,
+  .container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .clients h3,
+  #our-activities h3 {
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .section-title p {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .about h3 {
+    font-size: 23px;
+    line-height: 1.35;
+  }
+
+  /* images that ran edge to edge */
+  .features .image,
+  .counts .image {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    min-height: 240px;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .features .row,
+  .counts .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .features .row > *,
+  .counts .row > * {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .counts .content {
+    padding-top: 24px;
+  }
+
+  .counts .content h3 {
+    font-size: 22px;
+    line-height: 1.35;
+  }
+
+  #footer .footer-info .logo img {
+    max-height: 52px;
+  }
+
+  #footer .footer-top {
+    padding-top: 44px;
+  }
 }
